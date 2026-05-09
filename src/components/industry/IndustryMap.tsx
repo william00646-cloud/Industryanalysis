@@ -8,10 +8,10 @@ interface IndustryMapProps {
 }
 
 const categoryConfig = {
-  upstream: { label: 'Upstream', color: 'border-cyan-500/50 bg-cyan-500/10 hover:bg-cyan-500/20', active: 'border-cyan-400 bg-cyan-500/25', dot: 'bg-cyan-400', header: 'text-cyan-400' },
-  midstream: { label: 'Midstream', color: 'border-blue-500/50 bg-blue-500/10 hover:bg-blue-500/20', active: 'border-blue-400 bg-blue-500/25', dot: 'bg-blue-400', header: 'text-blue-400' },
-  downstream: { label: 'Downstream', color: 'border-emerald-500/50 bg-emerald-500/10 hover:bg-emerald-500/20', active: 'border-emerald-400 bg-emerald-500/25', dot: 'bg-emerald-400', header: 'text-emerald-400' },
-  adjacent: { label: 'Adjacent Markets', color: 'border-amber-500/50 bg-amber-500/10 hover:bg-amber-500/20', active: 'border-amber-400 bg-amber-500/25', dot: 'bg-amber-400', header: 'text-amber-400' },
+  upstream: { label: 'Upstream', color: 'border-cyan-200 bg-cyan-50 hover:bg-cyan-100', active: 'border-cyan-500 bg-cyan-100 shadow-sm', dot: 'bg-cyan-500', header: 'text-cyan-700' },
+  midstream: { label: 'Midstream', color: 'border-blue-200 bg-blue-50 hover:bg-blue-100', active: 'border-blue-500 bg-blue-100 shadow-sm', dot: 'bg-blue-500', header: 'text-blue-700' },
+  downstream: { label: 'Downstream', color: 'border-emerald-200 bg-emerald-50 hover:bg-emerald-100', active: 'border-emerald-500 bg-emerald-100 shadow-sm', dot: 'bg-emerald-500', header: 'text-emerald-700' },
+  adjacent: { label: 'Adjacent Markets', color: 'border-amber-200 bg-amber-50 hover:bg-amber-100', active: 'border-amber-500 bg-amber-100 shadow-sm', dot: 'bg-amber-500', header: 'text-amber-700' },
 };
 
 const categories = ['upstream', 'midstream', 'downstream', 'adjacent'] as const;
@@ -49,11 +49,11 @@ export function IndustryMap({ segments }: IndustryMapProps) {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <div className={`w-2 h-2 rounded-full flex-shrink-0 ${config.dot}`} />
-                            <span className={`text-sm font-medium ${isActive ? 'text-white' : 'text-slate-300'}`}>
+                            <span className={`text-sm font-medium ${isActive ? 'text-slate-900' : 'text-slate-600'}`}>
                               {seg.name}
                             </span>
                           </div>
-                          <ChevronRight size={14} className={`flex-shrink-0 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+                          <ChevronRight size={14} className={`flex-shrink-0 ${isActive ? 'text-slate-700' : 'text-slate-400'}`} />
                         </div>
                         <p className="text-slate-500 text-xs mt-1 ml-4 line-clamp-1">{seg.description.slice(0, 60)}…</p>
                       </button>
@@ -78,7 +78,7 @@ export function IndustryMap({ segments }: IndustryMapProps) {
 
       {/* Detail Panel */}
       {selected && (
-        <div className="xl:w-96 flex-shrink-0 rounded-xl border border-slate-700/60 bg-slate-800/60 p-5 overflow-y-auto max-h-[600px]">
+        <div className="xl:w-96 flex-shrink-0 card p-5 overflow-y-auto max-h-[600px]">
           <SegmentDetailPanel segment={selected} />
         </div>
       )}

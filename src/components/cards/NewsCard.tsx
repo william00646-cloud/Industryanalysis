@@ -28,14 +28,14 @@ export function NewsCard({ news, compact }: NewsCardProps) {
   const imp = importanceConfig[news.importance];
 
   return (
-    <div className="rounded-xl border border-slate-700/60 bg-slate-800/40 p-5">
+    <div className="card p-5">
       {/* Header */}
       <div className="flex items-start gap-3 mb-3">
         <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${imp.dot}`} />
         <div className="flex-1 min-w-0">
-          <h3 className="text-white font-semibold text-sm leading-snug mb-1.5">{news.title}</h3>
+          <h3 className="text-slate-900 font-semibold text-sm leading-snug mb-1.5">{news.title}</h3>
           <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-1 text-slate-500 text-xs">
+            <div className="flex items-center gap-1 text-slate-400 text-xs">
               <Calendar size={11} />
               <span>{news.date}</span>
             </div>
@@ -46,37 +46,37 @@ export function NewsCard({ news, compact }: NewsCardProps) {
       </div>
 
       {/* Summary */}
-      <p className="text-slate-400 text-sm leading-relaxed mb-4">{news.summary}</p>
+      <p className="text-slate-500 text-sm leading-relaxed mb-4">{news.summary}</p>
 
       {!compact && (
         <>
           {/* Why it matters */}
-          <div className="mb-4 p-3 bg-slate-700/30 rounded-lg border border-slate-700/40">
-            <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-1">Why It Matters</p>
-            <p className="text-slate-300 text-sm leading-relaxed">{news.whyItMatters}</p>
+          <div className="mb-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Why It Matters</p>
+            <p className="text-slate-700 text-sm leading-relaxed">{news.whyItMatters}</p>
           </div>
 
           {/* Beneficiaries & Losers */}
           <div className="grid grid-cols-2 gap-3 mb-4">
-            <div className="p-3 bg-emerald-900/20 border border-emerald-700/30 rounded-lg">
+            <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
               <div className="flex items-center gap-1.5 mb-2">
-                <TrendingUp size={12} className="text-emerald-400" />
-                <p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider">Beneficiaries</p>
+                <TrendingUp size={12} className="text-emerald-600" />
+                <p className="text-emerald-700 text-xs font-semibold uppercase tracking-wider">Beneficiaries</p>
               </div>
               <ul className="space-y-0.5">
                 {news.potentialBeneficiaries.map((b) => (
-                  <li key={b} className="text-emerald-300 text-xs">• {b}</li>
+                  <li key={b} className="text-emerald-700 text-xs">• {b}</li>
                 ))}
               </ul>
             </div>
-            <div className="p-3 bg-rose-900/20 border border-rose-700/30 rounded-lg">
+            <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg">
               <div className="flex items-center gap-1.5 mb-2">
-                <TrendingDown size={12} className="text-rose-400" />
-                <p className="text-rose-400 text-xs font-semibold uppercase tracking-wider">Potential Losers</p>
+                <TrendingDown size={12} className="text-rose-500" />
+                <p className="text-rose-700 text-xs font-semibold uppercase tracking-wider">Potential Losers</p>
               </div>
               <ul className="space-y-0.5">
                 {news.potentialLosers.map((l) => (
-                  <li key={l} className="text-rose-300 text-xs">• {l}</li>
+                  <li key={l} className="text-rose-700 text-xs">• {l}</li>
                 ))}
               </ul>
             </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { ValueChainSegment } from '../../types/industry';
 import { SegmentDetailPanel } from './SegmentDetailPanel';
 import { ChevronRight } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface ValueChainFlowProps {
   segments: ValueChainSegment[];
@@ -9,22 +10,23 @@ interface ValueChainFlowProps {
 }
 
 const nodeStyle: Record<string, string> = {
-  upstream: 'border-cyan-500/50 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300',
-  midstream: 'border-blue-500/50 bg-blue-500/10 hover:bg-blue-500/20 text-blue-300',
-  downstream: 'border-emerald-500/50 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300',
-  adjacent: 'border-amber-500/50 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300',
+  upstream: 'border-cyan-300 bg-cyan-50 hover:bg-cyan-100 text-cyan-700',
+  midstream: 'border-blue-300 bg-blue-50 hover:bg-blue-100 text-blue-700',
+  downstream: 'border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-700',
+  adjacent: 'border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-700',
 };
 const activeNodeStyle: Record<string, string> = {
-  upstream: 'border-cyan-400 bg-cyan-500/25 text-white',
-  midstream: 'border-blue-400 bg-blue-500/25 text-white',
-  downstream: 'border-emerald-400 bg-emerald-500/25 text-white',
-  adjacent: 'border-amber-400 bg-amber-500/25 text-white',
+  upstream: 'border-cyan-500 bg-cyan-100 text-cyan-800 shadow-sm font-semibold',
+  midstream: 'border-blue-500 bg-blue-100 text-blue-800 shadow-sm font-semibold',
+  downstream: 'border-emerald-500 bg-emerald-100 text-emerald-800 shadow-sm font-semibold',
+  adjacent: 'border-amber-500 bg-amber-100 text-amber-800 shadow-sm font-semibold',
 };
 
 // Ordered for the flow display (exclude adjacent from main flow)
 const mainFlowIds = ['exploration', 'drilling', 'production', 'pipeline', 'lng', 'refining'];
 
 export function ValueChainFlow({ segments, defaultSelectedId = 'exploration' }: ValueChainFlowProps) {
+  const { lang } = useLanguage();
   const [selected, setSelected] = useState<ValueChainSegment | null>(
     segments.find(s => s.id === defaultSelectedId) ?? segments[0] ?? null
   );
@@ -42,7 +44,7 @@ export function ValueChainFlow({ segments, defaultSelectedId = 'exploration' }: 
           isActive ? activeNodeStyle[seg.category] : nodeStyle[seg.category]
         }`}
       >
-        {seg.name}
+        {lang === 'zh' && seg.nameZh ? seg.nameZh : seg.name}
       </button>
     );
   };
@@ -62,14 +64,14 @@ export function ValueChainFlow({ segments, defaultSelectedId = 'exploration' }: 
       {/* Adjacent */}
       {adjacent.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-slate-600 text-xs uppercase tracking-wider mr-1">Adjacent:</span>
+          <span className="text-slate-600 text-xs uppercase tracking-wider mr-1">{lang === 'zh' ? '周邊：' : 'Adjacent:'}</span>
           {adjacent.map(seg => renderNode(seg))}
         </div>
       )}
 
       {/* Detail Panel */}
       {selected && (
-        <div className="mt-4 rounded-xl border border-slate-700/60 bg-slate-800/60 p-5 overflow-y-auto max-h-[500px]">
+        <div className="mt-4 card p-5 overflow-y-auto max-h-[500px]">
           <SegmentDetailPanel segment={selected} />
         </div>
       )}

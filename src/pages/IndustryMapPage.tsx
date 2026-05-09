@@ -9,7 +9,7 @@ export function IndustryMapPage() {
   const { industry } = useIndustry();
   const { lang } = useLanguage();
   const tr = useT(lang);
-  const { valueChainSegments, impactScenarios, categoryLabels } = industry;
+  const { valueChainSegments, impactScenarios, categoryLabels, categoryLabelsZh } = industry;
   const exampleScenario = impactScenarios[0];
 
   return (
@@ -23,7 +23,7 @@ export function IndustryMapPage() {
         <div className="flex gap-2 mb-4 flex-wrap">
           {(['upstream', 'midstream', 'downstream', 'adjacent'] as const).map(cat => (
             <span key={cat} className="text-xs px-2 py-0.5 bg-slate-800/60 border border-slate-700/50 rounded-full text-slate-400">
-              {categoryLabels[cat]}
+              {lang === 'zh' && categoryLabelsZh ? categoryLabelsZh[cat] : categoryLabels[cat]}
             </span>
           ))}
         </div>

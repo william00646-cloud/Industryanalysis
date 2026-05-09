@@ -24,15 +24,15 @@ export function PriceLineChart({ benchmarks }: PriceLineChartProps) {
     <div>
       <ResponsiveContainer width="100%" height={280}>
         <LineChart data={data} margin={{ top: 4, right: 8, left: -16, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
           <XAxis dataKey="date" tick={{ fill: '#94a3b8', fontSize: 10 }} axisLine={false} tickLine={false} interval={2} />
           <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569', borderRadius: 8 }}
-            labelStyle={{ color: '#94a3b8' }}
-            itemStyle={{ color: '#e2e8f0' }}
+            contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 8 }}
+            labelStyle={{ color: '#64748b' }}
+            itemStyle={{ color: '#334155' }}
           />
-          <Legend formatter={(value) => <span className="text-slate-300 text-xs">{value}</span>} />
+          <Legend formatter={(value) => <span className="text-slate-600 text-xs">{value}</span>} />
           {benchmarks.map((bm) => (
             <Line
               key={bm.id}

@@ -9,10 +9,10 @@ const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<
   if (active && payload && payload.length) {
     const d = payload[0].payload;
     return (
-      <div className="bg-slate-800 border border-slate-600/60 rounded-lg p-3 shadow-xl text-sm">
-        <p className="text-white font-semibold mb-1">{d.segment}</p>
-        <p className="text-slate-300">{d.marketSize}</p>
-        <p className="text-slate-400">{d.sharePercent}% of total</p>
+      <div className="bg-white border border-slate-200 rounded-lg p-3 shadow-lg text-sm">
+        <p className="text-slate-900 font-semibold mb-1">{d.segment}</p>
+        <p className="text-slate-700">{d.marketSize}</p>
+        <p className="text-slate-500">{d.sharePercent}% of total</p>
       </div>
     );
   }
@@ -39,7 +39,7 @@ export function MarketSizeChart({ data }: MarketSizeChartProps) {
         </Pie>
         <Tooltip content={<CustomTooltip />} />
         <Legend
-          formatter={(value) => <span className="text-slate-300 text-xs">{value}</span>}
+          formatter={(value) => <span className="text-slate-600 text-xs">{value}</span>}
           iconType="circle"
           iconSize={8}
         />
