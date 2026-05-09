@@ -43,27 +43,25 @@ export function ResearchNotesPage() {
 
   const createFromTemplate = (templateIndex: number) => {
     const t = researchNoteTemplates[templateIndex];
-    addNote({
+    const note = addNote({
       title: t.title,
       type: t.type,
       content: t.content,
       linkedCompany: '',
       linkedBenchmark: '',
     });
-    setTimeout(() => {
-      const newest = JSON.parse(localStorage.getItem('sectorscope_research_notes') ?? '[]')[0] as ResearchNote | undefined;
-      if (newest) selectNote(newest);
-    }, 0);
+    selectNote(note);
   };
 
   const createBlank = () => {
-    addNote({
+    const note = addNote({
       title: 'Untitled Research Note',
       type: draftType,
       content: '## New Note\n\n**Observation:**\n\n**Implication:**\n\n**Metrics to monitor:**\n-\n',
       linkedCompany,
       linkedBenchmark,
     });
+    selectNote(note);
   };
 
   const save = () => {

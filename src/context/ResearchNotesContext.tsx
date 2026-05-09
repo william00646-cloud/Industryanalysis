@@ -4,7 +4,7 @@ import { researchNoteTemplates } from '../data/terminal';
 
 interface ResearchNotesContextValue {
   notes: ResearchNote[];
-  addNote: (n: Omit<ResearchNote, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  addNote: (n: Omit<ResearchNote, 'id' | 'createdAt' | 'updatedAt'>) => ResearchNote;
   updateNote: (id: string, updates: Partial<Omit<ResearchNote, 'id' | 'createdAt' | 'updatedAt'>>) => void;
   deleteNote: (id: string) => void;
 }
@@ -38,7 +38,9 @@ export function ResearchNotesProvider({ children }: { children: React.ReactNode 
 
   const addNote = (n: Omit<ResearchNote, 'id' | 'createdAt' | 'updatedAt'>) => {
     const now = new Date().toISOString();
-    setNotes(prev => [{ ...n, id: makeId(), createdAt: now, updatedAt: now }, ...prev]);
+    const next = { ...n, id: makeId(), createdAt: now, updatedAt: now };
+    setNotes(prev => [next, ...prev]);
+    return next;
   };
 
   const updateNote = (id: string, updates: Partial<Omit<ResearchNote, 'id' | 'createdAt' | 'updatedAt'>>) => {

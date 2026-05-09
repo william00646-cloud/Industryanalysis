@@ -5,6 +5,7 @@ import { Search } from 'lucide-react';
 
 interface CommandPaletteProps {
   onNavigate: (page: TerminalPageId) => void;
+  onSelectCompany?: (id: string) => void;
 }
 
 const typeColor: Record<string, string> = {
@@ -14,7 +15,7 @@ const typeColor: Record<string, string> = {
   event:     'chip chip-rose',
 };
 
-export function CommandPalette({ onNavigate }: CommandPaletteProps) {
+export function CommandPalette({ onNavigate, onSelectCompany }: CommandPaletteProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState(0);
@@ -47,12 +48,19 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
 
   useEffect(() => { setSelected(0); }, [query]);
 
+  const runCommand = (item: (typeof commandPaletteItems)[number]) => {
+    if (item.type === 'company' && item.targetId) {
+      onSelectCompany?.(item.targetId);
+    }
+    onNavigate(item.action);
+    setOpen(false);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown') { e.preventDefault(); setSelected(s => Math.min(s + 1, filtered.length - 1)); }
     if (e.key === 'ArrowUp') { e.preventDefault(); setSelected(s => Math.max(s - 1, 0)); }
     if (e.key === 'Enter' && filtered[selected]) {
-      onNavigate(filtered[selected].action);
-      setOpen(false);
+      runCommand(filtered[selected]);
     }
   };
 
@@ -92,7 +100,7 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
               className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
                 i === selected ? 'bg-blue-50' : 'hover:bg-slate-50'
               }`}
-              onClick={() => { onNavigate(item.action); setOpen(false); }}
+              onClick={() => runCommand(item)}
               onMouseEnter={() => setSelected(i)}
             >
               <div className="flex-1 min-w-0">

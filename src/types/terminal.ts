@@ -146,6 +146,7 @@ export interface CommandPaletteItem {
   type: 'page' | 'company' | 'benchmark' | 'event';
   action: TerminalPageId;
   subtitle?: string;
+  targetId?: string;
 }
 
 export interface LiveSignal {

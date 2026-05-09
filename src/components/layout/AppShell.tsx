@@ -26,10 +26,11 @@ const pageTitles: Record<TerminalPageId, { en: string; zh: string }> = {
 interface AppShellProps {
   current: TerminalPageId;
   onNavigate: (page: TerminalPageId) => void;
+  onSelectCompany?: (id: string) => void;
   children: React.ReactNode;
 }
 
-export function AppShell({ current, onNavigate, children }: AppShellProps) {
+export function AppShell({ current, onNavigate, onSelectCompany, children }: AppShellProps) {
   const { lang } = useLanguage();
   const { industry } = useIndustry();
   const title = pageTitles[current]?.[lang] ?? current;
@@ -110,7 +111,7 @@ export function AppShell({ current, onNavigate, children }: AppShellProps) {
         </div>
       </div>
 
-      <CommandPalette onNavigate={onNavigate} />
+      <CommandPalette onNavigate={onNavigate} onSelectCompany={onSelectCompany} />
     </div>
   );
 }

@@ -68,7 +68,7 @@ export default function App() {
       <IndustryProvider>
         <WatchlistProvider>
           <ResearchNotesProvider>
-            <AppShell current={current} onNavigate={setCurrent}>
+            <AppShell current={current} onNavigate={setCurrent} onSelectCompany={setSelectedCompanyId}>
               <PageRouter
                 current={current}
                 onNavigate={setCurrent}

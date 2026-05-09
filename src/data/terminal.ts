@@ -899,11 +899,11 @@ export const commandPaletteItems: CommandPaletteItem[] = [
   { id: 'p11', label: 'Watchlist', type: 'page', action: 'watchlist', subtitle: 'Companies and benchmarks watchlist' },
   { id: 'p12', label: 'Research Notes', type: 'page', action: 'research-notes', subtitle: 'Analyst research workspace' },
   // Companies
-  { id: 'c1', label: 'Cheniere Energy (LNG)', type: 'company', action: 'company-workspace', subtitle: 'Midstream / LNG — Bullish' },
-  { id: 'c2', label: 'ExxonMobil (XOM)', type: 'company', action: 'company-workspace', subtitle: 'Integrated Oil & Gas — Neutral' },
-  { id: 'c3', label: 'Shell (SHEL)', type: 'company', action: 'company-workspace', subtitle: 'Integrated Oil & Gas — Bullish' },
-  { id: 'c4', label: 'Valero Energy (VLO)', type: 'company', action: 'company-workspace', subtitle: 'Refining — Neutral' },
-  { id: 'c5', label: 'SLB', type: 'company', action: 'company-workspace', subtitle: 'Oilfield Services — Bullish' },
+  { id: 'c1', label: 'Cheniere Energy (LNG)', type: 'company', action: 'company-workspace', targetId: 'lng', subtitle: 'Midstream / LNG — Bullish' },
+  { id: 'c2', label: 'ExxonMobil (XOM)', type: 'company', action: 'company-workspace', targetId: 'xom', subtitle: 'Integrated Oil & Gas — Neutral' },
+  { id: 'c3', label: 'Shell (SHEL)', type: 'company', action: 'company-workspace', targetId: 'shel', subtitle: 'Integrated Oil & Gas — Bullish' },
+  { id: 'c4', label: 'Valero Energy (VLO)', type: 'company', action: 'company-workspace', targetId: 'vlo', subtitle: 'Refining — Neutral' },
+  { id: 'c5', label: 'SLB', type: 'company', action: 'company-workspace', targetId: 'slb', subtitle: 'Oilfield Services — Bullish' },
   // Benchmarks
   { id: 'b1', label: 'JKM Asian LNG Price', type: 'benchmark', action: 'price-spread', subtitle: '$14.20/MMBtu — Elevated' },
   { id: 'b2', label: 'Henry Hub Natural Gas', type: 'benchmark', action: 'price-spread', subtitle: '$2.85/MMBtu — Bearish' },
