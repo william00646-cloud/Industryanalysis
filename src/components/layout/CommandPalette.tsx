@@ -8,10 +8,10 @@ interface CommandPaletteProps {
 }
 
 const typeColor: Record<string, string> = {
-  page:      'text-cyan-400 bg-cyan-900/40 border-cyan-700/40',
-  company:   'text-emerald-400 bg-emerald-900/40 border-emerald-700/40',
-  benchmark: 'text-amber-400 bg-amber-900/40 border-amber-700/40',
-  event:     'text-rose-400 bg-rose-900/40 border-rose-700/40',
+  page:      'chip chip-blue',
+  company:   'chip chip-green',
+  benchmark: 'chip chip-amber',
+  event:     'chip chip-rose',
 };
 
 export function CommandPalette({ onNavigate }: CommandPaletteProps) {
@@ -64,42 +64,42 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
       onClick={() => setOpen(false)}
     >
       <div
-        className="w-full max-w-xl bg-slate-900 border border-slate-700/60 rounded-xl shadow-2xl overflow-hidden"
+        className="w-full max-w-xl bg-white border border-slate-200 rounded-xl shadow-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
         {/* Search Input */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-700/60">
-          <Search size={15} className="text-slate-500 flex-shrink-0" />
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-200">
+          <Search size={15} className="text-slate-400 flex-shrink-0" />
           <input
             ref={inputRef}
             value={query}
             onChange={e => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Go to page, company, benchmark, or event…"
-            className="flex-1 bg-transparent text-white text-sm placeholder-slate-600 outline-none"
+            className="flex-1 bg-transparent text-slate-900 text-sm placeholder-slate-400 outline-none"
           />
-          <kbd className="text-slate-600 text-xs border border-slate-700 rounded px-1.5 py-0.5 hidden sm:block">Esc</kbd>
+          <kbd className="text-slate-400 text-xs border border-slate-200 rounded px-1.5 py-0.5 hidden sm:block">Esc</kbd>
         </div>
 
         {/* Results */}
         <div className="max-h-80 overflow-y-auto">
           {filtered.length === 0 && (
-            <div className="px-4 py-6 text-center text-slate-600 text-sm">No results found.</div>
+            <div className="px-4 py-6 text-center text-slate-400 text-sm">No results found.</div>
           )}
           {filtered.map((item, i) => (
             <button
               key={item.id}
               className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
-                i === selected ? 'bg-slate-800/80' : 'hover:bg-slate-800/40'
+                i === selected ? 'bg-blue-50' : 'hover:bg-slate-50'
               }`}
               onClick={() => { onNavigate(item.action); setOpen(false); }}
               onMouseEnter={() => setSelected(i)}
             >
               <div className="flex-1 min-w-0">
-                <div className="text-slate-200 text-sm font-medium">{item.label}</div>
-                {item.subtitle && <div className="text-slate-500 text-xs truncate">{item.subtitle}</div>}
+                <div className="text-slate-800 text-sm font-medium">{item.label}</div>
+                {item.subtitle && <div className="text-slate-400 text-xs truncate">{item.subtitle}</div>}
               </div>
-              <span className={`text-xs px-2 py-0.5 rounded border font-medium flex-shrink-0 ${typeColor[item.type]}`}>
+              <span className={`flex-shrink-0 ${typeColor[item.type]}`}>
                 {item.type}
               </span>
             </button>
@@ -107,7 +107,7 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2 border-t border-slate-800/60 flex items-center gap-4 text-slate-600 text-xs">
+        <div className="px-4 py-2 border-t border-slate-100 flex items-center gap-4 text-slate-400 text-xs">
           <span><kbd className="text-slate-500">↑↓</kbd> navigate</span>
           <span><kbd className="text-slate-500">Enter</kbd> go</span>
           <span><kbd className="text-slate-500">Esc</kbd> close</span>

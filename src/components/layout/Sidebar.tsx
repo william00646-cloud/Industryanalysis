@@ -3,64 +3,59 @@ import type { TerminalPageId } from '../../types/terminal';
 import { useIndustry } from '../../context/IndustryContext';
 import { useLanguage } from '../../context/LanguageContext';
 import {
-  LayoutDashboard,
-  BarChart3,
-  Map,
-  GitBranch,
-  TrendingUp,
-  Building2,
-  Newspaper,
-  Zap,
-  ChevronDown,
-  Briefcase,
-  Radio,
-  Star,
-  FileText,
-  Activity,
-  Search,
+  LayoutDashboard, BarChart3, Map, GitBranch, TrendingUp,
+  Zap, ChevronDown, Briefcase, Radio, Star, FileText,
+  Activity, Search, Newspaper, Settings, HelpCircle, Shield,
 } from 'lucide-react';
 
+interface NavItem {
+  id: TerminalPageId;
+  label: { en: string; zh: string };
+  icon: React.ReactNode;
+  badge?: string;
+}
+
 interface NavGroup {
-  label: string;
-  items: { id: TerminalPageId; label: string; icon: React.ReactNode; badge?: string }[];
+  label: { en: string; zh: string };
+  items: NavItem[];
 }
 
 const navGroups: NavGroup[] = [
   {
-    label: 'Overview',
+    label: { en: 'General', zh: '總覽' },
     items: [
-      { id: 'command-center', label: 'Command Center', icon: <LayoutDashboard size={15} /> },
-      { id: 'market-monitor', label: 'Market Monitor', icon: <Activity size={15} /> },
+      { id: 'command-center', label: { en: 'Dashboard', zh: '儀表板' }, icon: <LayoutDashboard size={15} /> },
+      { id: 'market-monitor', label: { en: 'Market Monitor', zh: '市場監控' }, icon: <Activity size={15} /> },
     ],
   },
   {
-    label: 'Industry',
+    label: { en: 'Analysis', zh: '分析' },
     items: [
-      { id: 'industry-map', label: 'Industry Map', icon: <Map size={15} /> },
-      { id: 'value-chain', label: 'Value Chain', icon: <GitBranch size={15} /> },
-      { id: 'supply-demand', label: 'Supply / Demand', icon: <BarChart3 size={15} /> },
-      { id: 'price-spread', label: 'Price & Spread', icon: <TrendingUp size={15} /> },
+      { id: 'industry-map',   label: { en: 'Industry Map',    zh: '產業地圖' }, icon: <Map size={15} /> },
+      { id: 'value-chain',    label: { en: 'Value Chain',     zh: '價值鏈' },   icon: <GitBranch size={15} /> },
+      { id: 'supply-demand',  label: { en: 'Supply / Demand', zh: '供需分析' }, icon: <BarChart3 size={15} /> },
+      { id: 'price-spread',   label: { en: 'Price & Spread',  zh: '價格與價差' }, icon: <TrendingUp size={15} /> },
     ],
   },
   {
-    label: 'Companies',
+    label: { en: 'Companies', zh: '公司' },
     items: [
-      { id: 'company-screener', label: 'Company Screener', icon: <Search size={15} /> },
-      { id: 'company-workspace', label: 'Company Workspace', icon: <Briefcase size={15} /> },
+      { id: 'company-screener',  label: { en: 'Screener',   zh: '公司篩選器' }, icon: <Search size={15} /> },
+      { id: 'company-workspace', label: { en: 'Workspace',  zh: '公司工作台' }, icon: <Briefcase size={15} /> },
     ],
   },
   {
-    label: 'Intelligence',
+    label: { en: 'Intelligence', zh: '情報' },
     items: [
-      { id: 'news-terminal', label: 'News Terminal', icon: <Newspaper size={15} /> },
-      { id: 'event-impact', label: 'Event Impact', icon: <Radio size={15} /> },
+      { id: 'news-terminal', label: { en: 'News Terminal', zh: '新聞終端' }, icon: <Newspaper size={15} /> },
+      { id: 'event-impact',  label: { en: 'Event Impact',  zh: '事件衝擊' }, icon: <Radio size={15} /> },
     ],
   },
   {
-    label: 'Workspace',
+    label: { en: 'Workspace', zh: '工作台' },
     items: [
-      { id: 'watchlist', label: 'Watchlist', icon: <Star size={15} /> },
-      { id: 'research-notes', label: 'Research Notes', icon: <FileText size={15} /> },
+      { id: 'watchlist',      label: { en: 'Watchlist',       zh: '追蹤清單' }, icon: <Star size={15} /> },
+      { id: 'research-notes', label: { en: 'Research Notes',  zh: '研究筆記' }, icon: <FileText size={15} /> },
     ],
   },
 ];
@@ -76,94 +71,97 @@ export function Sidebar({ current, onNavigate }: SidebarProps) {
   const [pickerOpen, setPickerOpen] = useState(false);
 
   return (
-    <aside className="w-52 flex-shrink-0 flex flex-col bg-zinc-950 border-r border-slate-800/60 min-h-screen">
+    <aside className="w-56 flex-shrink-0 flex flex-col bg-white border-r border-slate-200 min-h-screen">
       {/* Logo */}
-      <div className="px-4 py-4 border-b border-slate-800/60">
-        <div className="flex items-center gap-2 mb-0.5">
-          <div className="w-6 h-6 rounded bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-            <Zap size={13} className="text-white" />
+      <div className="px-5 py-5 border-b border-slate-100">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center flex-shrink-0 shadow-sm">
+            <Zap size={14} className="text-white" />
           </div>
-          <span className="text-white font-bold text-sm tracking-tight">SectorScope</span>
+          <div>
+            <p className="text-slate-900 font-bold text-sm tracking-tight leading-none">SectorScope</p>
+            <p className="text-slate-400 text-[10px] font-medium mt-0.5">{lang === 'zh' ? '產業情報平台' : 'Industry Intelligence'}</p>
+          </div>
         </div>
-        <p className="text-slate-600 text-xs ml-8">Industry Terminal</p>
       </div>
 
       {/* Industry Selector */}
-      <div className="px-3 py-2.5 border-b border-slate-800/60">
-        <p className="text-slate-700 text-xs uppercase tracking-wider mb-1.5">Industry</p>
+      <div className="px-3 py-3 border-b border-slate-100">
         <div className="relative">
           <button
             onClick={() => setPickerOpen(o => !o)}
-            className="w-full flex items-center gap-2 px-2.5 py-1.5 bg-slate-900/80 rounded border border-slate-700/50 hover:border-cyan-500/40 transition-colors"
+            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 hover:border-slate-300 transition-all text-left"
           >
-            <span className="text-sm leading-none">{industry.meta.icon}</span>
-            <span className="text-slate-200 text-xs font-semibold flex-1 text-left truncate">{industry.meta.shortName}</span>
-            <ChevronDown size={11} className={`text-slate-600 flex-shrink-0 transition-transform ${pickerOpen ? 'rotate-180' : ''}`} />
+            <span className="text-base">{industry.meta.icon}</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-slate-800 text-xs font-semibold truncate">{industry.meta.shortName}</p>
+              <p className="text-slate-400 text-[10px]">{lang === 'zh' ? '目前產業' : 'Current sector'}</p>
+            </div>
+            <ChevronDown size={12} className={`text-slate-400 flex-shrink-0 transition-transform ${pickerOpen ? 'rotate-180' : ''}`} />
           </button>
 
           {pickerOpen && (
-            <div className="absolute left-0 right-0 top-full mt-1 bg-slate-900 border border-slate-700/60 rounded-lg shadow-xl z-50 overflow-hidden">
-              {allIndustries.map(ind => (
-                <button
-                  key={ind.id}
-                  onClick={() => { setIndustryId(ind.id); setPickerOpen(false); onNavigate('command-center'); }}
-                  className={`w-full flex items-center gap-2 px-3 py-1.5 text-xs hover:bg-slate-800/60 transition-colors ${
-                    ind.id === industryId ? 'text-cyan-400 bg-cyan-500/10' : 'text-slate-300'
-                  }`}
-                >
-                  <span>{ind.icon}</span>
-                  <span className="font-medium truncate">{ind.shortName}</span>
-                </button>
-              ))}
+            <div className="absolute left-0 right-0 top-full mt-1.5 bg-white border border-slate-200 rounded-xl shadow-card-lg z-50 overflow-hidden animate-fade-in">
+              <div className="py-1">
+                {allIndustries.map(ind => (
+                  <button
+                    key={ind.id}
+                    onClick={() => { setIndustryId(ind.id); setPickerOpen(false); onNavigate('command-center'); }}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 text-xs hover:bg-slate-50 transition-colors ${
+                      ind.id === industryId ? 'text-blue-600 font-semibold bg-blue-50' : 'text-slate-600'
+                    }`}
+                  >
+                    <span className="text-sm">{ind.icon}</span>
+                    <span className="truncate">{ind.shortName}</span>
+                    {ind.id === industryId && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-2 py-3 overflow-y-auto space-y-4">
+      <nav className="flex-1 px-3 py-3 overflow-y-auto space-y-1">
         {navGroups.map(group => (
-          <div key={group.label}>
-            <p className="text-slate-700 text-xs uppercase tracking-wider px-2 mb-1">{group.label}</p>
-            <div className="space-y-0.5">
-              {group.items.map(item => {
-                const isActive = current === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => onNavigate(item.id)}
-                    className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded text-xs transition-all ${
-                      isActive
-                        ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/20'
-                        : 'text-slate-500 hover:text-slate-200 hover:bg-slate-800/50'
-                    }`}
-                  >
-                    <span className="flex-shrink-0">{item.icon}</span>
-                    <span className="font-medium leading-tight truncate">{item.label}</span>
-                    {item.badge && (
-                      <span className="ml-auto text-xs bg-rose-500/20 text-rose-400 px-1.5 py-0.5 rounded-full leading-none">{item.badge}</span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+          <div key={group.label.en} className="mb-2">
+            <p className="section-label">{group.label[lang]}</p>
+            {group.items.map(item => {
+              const isActive = current === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => onNavigate(item.id)}
+                  className={`nav-item ${isActive ? 'active' : ''}`}
+                >
+                  <span className="flex-shrink-0">{item.icon}</span>
+                  <span className="truncate">{item.label[lang]}</span>
+                  {item.badge && (
+                    <span className="ml-auto text-[10px] bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded-full font-semibold">{item.badge}</span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         ))}
       </nav>
 
       {/* Footer */}
-      <div className="px-3 py-3 border-t border-slate-800/60 space-y-2">
-        {/* Lang toggle */}
+      <div className="px-3 py-3 border-t border-slate-100 space-y-1">
         <button
           onClick={toggleLang}
-          className="w-full flex items-center justify-center gap-1.5 py-1 rounded border border-slate-800 text-xs hover:border-slate-600 transition-colors"
+          className="nav-item"
         >
-          <span className={lang === 'en' ? 'text-cyan-400 font-bold' : 'text-slate-600'}>EN</span>
-          <span className="text-slate-700">/</span>
-          <span className={lang === 'zh' ? 'text-cyan-400 font-bold' : 'text-slate-600'}>中</span>
+          <Settings size={15} />
+          <span className="flex-1">{lang === 'zh' ? '語言' : 'Language'}</span>
+          <span className="chip chip-blue text-[10px] px-1.5 py-0.5">{lang === 'en' ? 'EN' : '中'}</span>
         </button>
-        <p className="text-slate-700 text-xs text-center">⌘K Command Palette</p>
-        <p className="text-slate-800 text-xs text-center">Demo · v0.3</p>
+        <div className="flex items-center gap-2 px-3 py-2">
+          <div className="dot-online flex-shrink-0" />
+          <span className="text-slate-400 text-[10px]">Demo · v0.3</span>
+          <span className="ml-auto text-slate-300 text-[10px]">⌘K</span>
+        </div>
       </div>
     </aside>
   );

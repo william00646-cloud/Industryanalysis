@@ -21,10 +21,10 @@ export function SpreadChart({ highBenchmark, lowBenchmark, title, interpretation
   const current = spreadData[spreadData.length - 1]?.spread ?? 0;
 
   return (
-    <div className="rounded-xl border border-slate-700/60 bg-slate-800/40 p-5">
+    <div className="card p-5">
       <div className="flex items-start justify-between mb-1">
-        <h3 className="text-white font-semibold text-sm">{title}</h3>
-        <span className={`text-lg font-bold ${current > 0 ? 'text-cyan-400' : 'text-rose-400'}`}>
+        <h3 className="text-slate-900 font-semibold text-sm">{title}</h3>
+        <span className={`text-lg font-bold font-mono ${current > 0 ? 'text-blue-600' : 'text-rose-600'}`}>
           {current > 0 ? '+' : ''}{current} {highBenchmark.unit}
         </span>
       </div>
@@ -35,27 +35,27 @@ export function SpreadChart({ highBenchmark, lowBenchmark, title, interpretation
         <AreaChart data={spreadData} margin={{ top: 2, right: 4, left: -28, bottom: 0 }}>
           <defs>
             <linearGradient id={`grad-${title}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#22d3ee" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#22d3ee" stopOpacity={0} />
+              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.2} />
+              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-          <XAxis dataKey="date" tick={{ fill: '#64748b', fontSize: 9 }} axisLine={false} tickLine={false} interval={3} />
-          <YAxis tick={{ fill: '#64748b', fontSize: 10 }} axisLine={false} tickLine={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+          <XAxis dataKey="date" tick={{ fill: '#94a3b8', fontSize: 9 }} axisLine={false} tickLine={false} interval={3} />
+          <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} axisLine={false} tickLine={false} />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569', borderRadius: 8, fontSize: 12 }}
-            labelStyle={{ color: '#94a3b8' }}
+            contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 8, fontSize: 12 }}
+            labelStyle={{ color: '#64748b' }}
           />
           <Area
             type="monotone"
             dataKey="spread"
-            stroke="#22d3ee"
+            stroke="#3b82f6"
             strokeWidth={2}
             fill={`url(#grad-${title})`}
           />
         </AreaChart>
       </ResponsiveContainer>
-      <p className="text-slate-500 text-xs mt-3 leading-relaxed italic">{interpretation}</p>
+      <p className="text-slate-400 text-xs mt-3 leading-relaxed italic">{interpretation}</p>
     </div>
   );
 }

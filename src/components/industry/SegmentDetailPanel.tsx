@@ -21,25 +21,25 @@ export function SegmentDetailPanel({ segment }: SegmentDetailPanelProps) {
       {/* Header */}
       <div className="flex items-center gap-3 mb-2">
         <Badge label={segment.category.toUpperCase()} variant={color} size="md" />
-        <h3 className="text-white font-semibold text-lg">{segment.name}</h3>
+        <h3 className="text-slate-900 font-semibold text-lg">{segment.name}</h3>
       </div>
-      <p className="text-slate-400 text-sm leading-relaxed">{segment.description}</p>
+      <p className="text-slate-500 text-sm leading-relaxed">{segment.description}</p>
 
       {/* Commercial Nature */}
-      <div className="p-3 bg-slate-700/30 rounded-lg border border-slate-700/40">
+      <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
         <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Commercial Nature</p>
-        <p className="text-slate-300 text-sm">{segment.commercialNature}</p>
+        <p className="text-slate-700 text-sm">{segment.commercialNature}</p>
       </div>
 
       {/* Revenue Sources */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <DollarSign size={14} className="text-emerald-400" />
-          <p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider">Revenue Sources</p>
+          <DollarSign size={14} className="text-emerald-600" />
+          <p className="text-emerald-700 text-xs font-semibold uppercase tracking-wider">Revenue Sources</p>
         </div>
         <ul className="space-y-1">
           {segment.revenueSources.map((r) => (
-            <li key={r} className="text-slate-300 text-sm flex items-start gap-2">
+            <li key={r} className="text-slate-600 text-sm flex items-start gap-2">
               <span className="text-emerald-500 mt-1 flex-shrink-0">•</span>
               <span>{r}</span>
             </li>
@@ -50,12 +50,12 @@ export function SegmentDetailPanel({ segment }: SegmentDetailPanelProps) {
       {/* Cost Drivers */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <BarChart2 size={14} className="text-blue-400" />
-          <p className="text-blue-400 text-xs font-semibold uppercase tracking-wider">Key Cost Drivers</p>
+          <BarChart2 size={14} className="text-blue-600" />
+          <p className="text-blue-700 text-xs font-semibold uppercase tracking-wider">Key Cost Drivers</p>
         </div>
         <ul className="space-y-1">
           {segment.costDrivers.map((c) => (
-            <li key={c} className="text-slate-300 text-sm flex items-start gap-2">
+            <li key={c} className="text-slate-600 text-sm flex items-start gap-2">
               <span className="text-blue-500 mt-1 flex-shrink-0">•</span>
               <span>{c}</span>
             </li>
@@ -66,12 +66,12 @@ export function SegmentDetailPanel({ segment }: SegmentDetailPanelProps) {
       {/* Key Capabilities */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <Zap size={14} className="text-amber-400" />
-          <p className="text-amber-400 text-xs font-semibold uppercase tracking-wider">Key Capabilities</p>
+          <Zap size={14} className="text-amber-600" />
+          <p className="text-amber-700 text-xs font-semibold uppercase tracking-wider">Key Capabilities</p>
         </div>
         <ul className="space-y-1">
           {segment.keyCapabilities.map((k) => (
-            <li key={k} className="text-slate-300 text-sm flex items-start gap-2">
+            <li key={k} className="text-slate-600 text-sm flex items-start gap-2">
               <span className="text-amber-500 mt-1 flex-shrink-0">•</span>
               <span>{k}</span>
             </li>
@@ -82,12 +82,12 @@ export function SegmentDetailPanel({ segment }: SegmentDetailPanelProps) {
       {/* Risks */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <AlertTriangle size={14} className="text-rose-400" />
-          <p className="text-rose-400 text-xs font-semibold uppercase tracking-wider">Main Risks</p>
+          <AlertTriangle size={14} className="text-rose-500" />
+          <p className="text-rose-700 text-xs font-semibold uppercase tracking-wider">Main Risks</p>
         </div>
         <ul className="space-y-1">
           {segment.risks.map((r) => (
-            <li key={r} className="text-slate-300 text-sm flex items-start gap-2">
+            <li key={r} className="text-slate-600 text-sm flex items-start gap-2">
               <span className="text-rose-500 mt-1 flex-shrink-0">•</span>
               <span>{r}</span>
             </li>
@@ -98,8 +98,8 @@ export function SegmentDetailPanel({ segment }: SegmentDetailPanelProps) {
       {/* Companies */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <Building2 size={14} className="text-slate-400" />
-          <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Representative Companies</p>
+          <Building2 size={14} className="text-slate-500" />
+          <p className="text-slate-600 text-xs font-semibold uppercase tracking-wider">Representative Companies</p>
         </div>
         <div className="flex flex-wrap gap-1.5">
           {segment.representativeCompanies.map((c) => (

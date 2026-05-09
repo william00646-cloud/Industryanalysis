@@ -25,6 +25,12 @@ export const oilGas: IndustryData = {
     downstream: 'Downstream',
     adjacent: 'Adjacent Markets',
   },
+  categoryLabelsZh: {
+    upstream: '上游',
+    midstream: '中游',
+    downstream: '下游',
+    adjacent: '周邊市場',
+  },
   keySignals: [
     {
       title: 'Midstream bottleneck risk is rising',
@@ -51,7 +57,7 @@ export const oilGas: IndustryData = {
   ],
   valueChainSegments: [
     {
-      id: 'exploration', name: 'Exploration', category: 'upstream',
+      id: 'exploration', name: 'Exploration', nameZh: '勘探', category: 'upstream',
       description: 'Identifying and delineating subsurface oil and gas accumulations through geological and geophysical surveys.',
       commercialNature: 'Discovering potential reserves to be monetised via development or asset sales.',
       revenueSources: ['Exploration rights resale', 'Joint venture carry arrangements', 'Licensing of seismic data', 'Project carried interest'],
@@ -62,7 +68,7 @@ export const oilGas: IndustryData = {
       keyMetrics: ['Discovery rate', 'Finding cost ($/boe)', 'Reserve replacement ratio', '2P resource base'],
     },
     {
-      id: 'drilling', name: 'Drilling', category: 'upstream',
+      id: 'drilling', name: 'Drilling', nameZh: '鑽井', category: 'upstream',
       description: 'Constructing wellbores to access oil and gas reservoirs, including both exploration and development drilling.',
       commercialNature: 'Service-based revenue: day rates × utilisation for rigs and services.',
       revenueSources: ['Drilling rig day rates', 'Directional drilling services', 'Well completion services', 'Cementing and casing'],
@@ -73,7 +79,7 @@ export const oilGas: IndustryData = {
       keyMetrics: ['Rig utilisation rate', 'Average day rate', 'Upstream capex cycle', 'Active rig count'],
     },
     {
-      id: 'production', name: 'Production', category: 'upstream',
+      id: 'production', name: 'Production', nameZh: '生產', category: 'upstream',
       description: 'Extracting oil and gas from proven reservoirs at commercial rates over the field life.',
       commercialNature: 'Revenue = production volume × realised commodity price minus lifting costs.',
       revenueSources: ['Crude oil sales', 'Natural gas and NGL sales', 'Production-sharing agreement entitlements'],
@@ -84,7 +90,7 @@ export const oilGas: IndustryData = {
       keyMetrics: ['Production volume (boe/d)', 'Lifting cost ($/boe)', 'Decline rate', 'Break-even price'],
     },
     {
-      id: 'pipeline', name: 'Pipeline & Storage', category: 'midstream',
+      id: 'pipeline', name: 'Pipeline & Storage', nameZh: '管道與儲存', category: 'midstream',
       description: 'Transporting crude oil, refined products, and natural gas via pipeline networks and storing in tank farms.',
       commercialNature: 'Fee-based throughput model: tariff × volumes, largely insulated from commodity price.',
       revenueSources: ['Pipeline throughput tariffs', 'Storage capacity fees', 'Interruptible transportation charges'],
@@ -95,7 +101,7 @@ export const oilGas: IndustryData = {
       keyMetrics: ['Pipeline utilisation', 'Throughput volumes', 'EBITDA per mile', 'Contract tenor'],
     },
     {
-      id: 'lng', name: 'LNG Terminal', category: 'midstream',
+      id: 'lng', name: 'LNG Terminal', nameZh: 'LNG 終端', category: 'midstream',
       description: 'Liquefying natural gas for ocean shipping and regasifying at destination terminals.',
       commercialNature: 'Liquefaction capacity fees plus spot LNG trading; revenues anchored by long-term offtake contracts.',
       revenueSources: ['Liquefaction tolling fees', 'Long-term LNG offtake contracts', 'Spot cargo sales at JKM/TTF prices'],
@@ -106,7 +112,7 @@ export const oilGas: IndustryData = {
       keyMetrics: ['Liquefaction utilisation', 'JKM-Henry Hub spread', 'Contract coverage ratio', 'LNG shipping rates'],
     },
     {
-      id: 'refining', name: 'Refining', category: 'downstream',
+      id: 'refining', name: 'Refining', nameZh: '煉油', category: 'downstream',
       description: 'Converting crude oil into marketable petroleum products including gasoline, diesel, jet fuel, and fuel oil.',
       commercialNature: 'Margin business: crack spread = product basket price minus crude input cost.',
       revenueSources: ['Gasoline and diesel sales', 'Jet fuel and aviation products', 'Fuel oil and residual products'],
@@ -117,7 +123,7 @@ export const oilGas: IndustryData = {
       keyMetrics: ['Crack spread ($/bbl)', 'Refinery utilisation', 'Nelson complexity index', 'Refining EBITDA/bbl'],
     },
     {
-      id: 'petrochemical', name: 'Petrochemical', category: 'adjacent',
+      id: 'petrochemical', name: 'Petrochemical', nameZh: '石化', category: 'adjacent',
       description: 'Converting oil and gas derivatives (naphtha, ethane) into base chemicals, polymers, and specialty materials.',
       commercialNature: 'Spread business: product price minus feedstock cost; cyclical margins driven by capacity additions.',
       revenueSources: ['Ethylene and propylene sales', 'Polyethylene and polypropylene', 'Aromatics (BTX)', 'Specialty chemicals'],
@@ -128,7 +134,7 @@ export const oilGas: IndustryData = {
       keyMetrics: ['Ethylene spread', 'Cracker utilisation', 'Integrated margin', 'Global capacity additions'],
     },
     {
-      id: 'power-gen', name: 'Power Generation', category: 'adjacent',
+      id: 'power-gen', name: 'Power Generation', nameZh: '發電', category: 'adjacent',
       description: 'Using natural gas as fuel for electricity generation, a key demand anchor for gas markets.',
       commercialNature: 'Gas-fired power plants compete on spark spread; demand driven by electricity prices vs. gas costs.',
       revenueSources: ['Power sales under PPA or merchant basis', 'Capacity payments', 'Ancillary services'],
@@ -188,8 +194,9 @@ export const oilGas: IndustryData = {
   ],
   supplyDemandTabs: [
     {
-      id: 'oil', label: 'Crude Oil',
-      supplyLabel: 'Top Producing Countries', demandLabel: 'Top Consuming Countries',
+      id: 'oil', label: 'Crude Oil', labelZh: '原油',
+      supplyLabel: 'Top Producing Countries', supplyLabelZh: '主要產油國',
+      demandLabel: 'Top Consuming Countries', demandLabelZh: '主要消費國',
       supplyUnit: 'mb/d', demandUnit: 'mb/d', balanceUnit: 'mb/d',
       supplyRows: [
         { country: 'United States', production: '13.2 mb/d', globalShare: '13.2%', trend: 'up' },
@@ -219,8 +226,9 @@ export const oilGas: IndustryData = {
       interpretation: 'Inventory can absorb short shocks, but prolonged disruptions quickly create acute market stress and price spikes.',
     },
     {
-      id: 'lng', label: 'Natural Gas / LNG',
-      supplyLabel: 'Top LNG Exporters', demandLabel: 'Major LNG Markets',
+      id: 'lng', label: 'Natural Gas / LNG', labelZh: '天然氣 / LNG',
+      supplyLabel: 'Top LNG Exporters', supplyLabelZh: '主要LNG出口國',
+      demandLabel: 'Major LNG Markets', demandLabelZh: '主要LNG市場',
       supplyUnit: 'MT/yr', demandUnit: 'MT/yr', balanceUnit: 'MT',
       supplyRows: [
         { country: 'Qatar', production: '77 MT/yr', globalShare: '22%', trend: 'up' },

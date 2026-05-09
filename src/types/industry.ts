@@ -37,6 +37,7 @@ export interface KeySignal {
 export interface ValueChainSegment {
   id: string;
   name: string;
+  nameZh?: string;
   category: 'upstream' | 'midstream' | 'downstream' | 'adjacent';
   categoryLabel?: string; // custom label, e.g. "Design" / "Manufacturing" / "Distribution"
   description: string;
@@ -97,8 +98,11 @@ export interface SupplyDemandBalance {
 export interface SupplyDemandTab {
   id: string;
   label: string;
+  labelZh?: string;
   supplyLabel: string;       // e.g. "Top Producing Countries" / "Top Wafer Suppliers"
+  supplyLabelZh?: string;
   demandLabel: string;       // e.g. "Top Consuming Countries" / "Top Buying Regions"
+  demandLabelZh?: string;
   supplyUnit: string;        // e.g. "mb/d" / "wafer starts/month"
   demandUnit: string;
   balanceUnit: string;
@@ -196,6 +200,12 @@ export interface IndustryData {
   impactScenarios: ImpactScenario[];
   beneficiaryMatrix: BeneficiaryMatrix[];
   categoryLabels: {
+    upstream: string;
+    midstream: string;
+    downstream: string;
+    adjacent: string;
+  };
+  categoryLabelsZh?: {
     upstream: string;
     midstream: string;
     downstream: string;

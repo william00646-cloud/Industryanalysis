@@ -10,36 +10,35 @@ interface MetricCardProps {
 }
 
 const accentStyles = {
-  cyan: 'border-cyan-500/30 bg-cyan-500/5',
-  emerald: 'border-emerald-500/30 bg-emerald-500/5',
-  blue: 'border-blue-500/30 bg-blue-500/5',
-  amber: 'border-amber-500/30 bg-amber-500/5',
-  rose: 'border-rose-500/30 bg-rose-500/5',
+  cyan:    { bar: 'stat-accent-cyan',    value: 'text-cyan-600' },
+  emerald: { bar: 'stat-accent-green',   value: 'text-emerald-600' },
+  blue:    { bar: 'stat-accent-blue',    value: 'text-blue-600' },
+  amber:   { bar: 'stat-accent-amber',   value: 'text-amber-600' },
+  rose:    { bar: 'stat-accent-rose',    value: 'text-rose-600' },
 };
 
-const valueAccent = {
-  cyan: 'text-cyan-400',
-  emerald: 'text-emerald-400',
-  blue: 'text-blue-400',
-  amber: 'text-amber-400',
-  rose: 'text-rose-400',
-};
-
-export function MetricCard({ title, value, unit, change, description, accent = 'cyan' }: MetricCardProps) {
+export function MetricCard({ title, value, unit, change, description, accent = 'blue' }: MetricCardProps) {
+  const s = accentStyles[accent];
   return (
-    <div className={`rounded-xl border p-5 ${accentStyles[accent]}`}>
-      <p className="text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">{title}</p>
-      <div className="flex items-end gap-2 mb-1">
-        <span className={`text-2xl font-bold ${valueAccent[accent]}`}>{value}</span>
-        {unit && <span className="text-slate-500 text-sm mb-0.5">{unit}</span>}
+    <div className={`card p-4 ${s.bar}`}>
+      <p className="text-slate-500 text-[10px] font-semibold uppercase tracking-[0.12em] mb-2">{title}</p>
+
+      <div className="flex items-end gap-1.5 mb-1.5">
+        <span className={`text-2xl font-bold font-mono leading-none ${s.value}`}>{value}</span>
+        {unit && <span className="text-slate-400 text-xs mb-0.5">{unit}</span>}
       </div>
+
       {change !== undefined && (
-        <div className={`flex items-center gap-1 text-xs ${change >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
-          {change > 0 ? <TrendingUp size={12} /> : change < 0 ? <TrendingDown size={12} /> : <Minus size={12} />}
-          <span>{change > 0 ? '+' : ''}{change}%</span>
+        <div className={`flex items-center gap-1 text-xs ${
+          change > 0 ? 'text-emerald-600' : change < 0 ? 'text-rose-500' : 'text-slate-400'
+        }`}>
+          {change > 0 ? <TrendingUp size={11} /> : change < 0 ? <TrendingDown size={11} /> : <Minus size={11} />}
+          <span className="font-semibold font-mono">{change > 0 ? '+' : ''}{change}%</span>
         </div>
       )}
-      {description && <p className="text-slate-500 text-xs mt-2 leading-relaxed">{description}</p>}
+      {description && (
+        <p className="text-slate-400 text-[10px] mt-2 leading-relaxed">{description}</p>
+      )}
     </div>
   );
 }
