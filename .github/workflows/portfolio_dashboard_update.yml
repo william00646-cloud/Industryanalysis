@@ -1,0 +1,42 @@
+name: Portfolio Dashboard - Refresh Data Cache
+
+on:
+  schedule:
+    # 06:00 UTC = 14:00 Asia/Taipei, after the TWSE 13:30 close.
+    # Runs every weekday; non-trading days simply no-op (script never fails the job).
+    - cron: "0 6 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-cache:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: portfolio-dashboard
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Refresh price/FX/benchmark cache
+        run: python scripts/refresh_cache.py
+
+      - name: Commit updated cache if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/cache
+          if git diff --cached --quiet; then
+            echo "No cache changes to commit."
+          else
+            git commit -m "chore: refresh portfolio dashboard price cache"
+            git push
+          fi

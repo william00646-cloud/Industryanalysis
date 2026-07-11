@@ -1,0 +1,6 @@
+ticker,name,shares,average_cost,currency,purchase_date,asset_class,sector
+2395.TW,研華,1000,510.73,TWD,2026-05-25,TW_EQUITY,Technology
+2454.TW,聯發科,130,2767.01,TWD,2026-04-30,TW_EQUITY,Technology
+2327.TW,國巨,280,738.73,TWD,2026-05-29,TW_EQUITY,Technology
+3008.TW,大立光,55,3484.95,TWD,2026-05-29,TW_EQUITY,Technology
+NFLX,Netflix,140,74.60,USD,2026-07-01,US_EQUITY,Communication Services
