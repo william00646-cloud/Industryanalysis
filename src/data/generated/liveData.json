@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-08-18T08:55:31.104Z",
+    "generatedAt": "2026-08-19T08:56:50.107Z",
     "mode": "demo",
     "disclaimer": "Public-source refresh output. Some terminal views may still use demo estimates where public data is unavailable. Not real-time financial data."
   },
@@ -24,7 +24,7 @@
       "name": "GDELT 2.1 Document API",
       "url": "https://api.gdeltproject.org/api/v2/doc/doc",
       "status": "error",
-      "message": "Unexpected token 'Q', \"Queries co\"... is not valid JSON"
+      "message": "fetch failed"
     }
   ],
   "benchmarks": [],
