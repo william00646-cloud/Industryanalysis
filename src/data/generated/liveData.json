@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-25T18:41:15.105Z",
+    "generatedAt": "2026-11-26T18:28:30.802Z",
     "mode": "demo",
     "disclaimer": "Public-source refresh output. Some terminal views may still use demo estimates where public data is unavailable. Not real-time financial data."
   },
@@ -24,7 +24,7 @@
       "name": "GDELT 2.1 Document API",
       "url": "https://api.gdeltproject.org/api/v2/doc/doc",
       "status": "error",
-      "message": "fetch failed"
+      "message": "429 Too Many Requests"
     }
   ],
   "benchmarks": [],
